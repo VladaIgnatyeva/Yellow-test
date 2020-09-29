@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import style from './Login.module.css';
 import bearFace from '../../assets/bear-face.png';
 import bearFace2 from '../../assets/bear-face@2x.png';
@@ -6,27 +6,51 @@ import bearFace3 from '../../assets/bear-face@3x.png';
 import bearFaceMob from '../../assets/bearFace.png';
 import bearFace2Mob from '../../assets/bearFace@2x.png';
 import bearFace3Mob from '../../assets/bearFace@3x.png';
-import './Login.css'
+import HTTPWrapper from '../../utils/HTTPWrapper';
+import { NotificationModal } from '../../components/NotificationModal/NotificationModal';
+
+import './Login.css';
 
 export const Login = () => {
 
-    return (
-        <div className='login-container'>
-            <div className='d-none d-md-block d-xl-none '>
-                <div className='box '>
-                    <img src={bearFace}
-                        srcSet={`${bearFace2} 2x, ${bearFace3} 3x`}
-                        className='bearFace' />
-                    <button className='btn-login'><span className='letMeIn'>Let me in</span></button>
-                </div>
+    const [showModal, setShowModal] = useState(false);
 
+    const login = () => {
+        const http = new HTTPWrapper();
+        const data = {
+            uuid: 'hello'
+        }
+        http.post(`auth/uuidLogin`, data)
+            .then(res => {
+                localStorage.setItem('token', `${res.data.response.token_type} ${res.data.response.access_token}`)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    return (
+        <>
+            <div className='login-container'>
+                <div className='d-none d-md-block d-xl-none '>
+                    <div className='box '>
+                        <img src={bearFace}
+                            srcSet={`${bearFace2} 2x, ${bearFace3} 3x`}
+                            className='bearFace' />
+                        <button className='btn-login' onClick={login}><span className='letMeIn'>Let me in</span></button>
+                    </div>
+
+                </div>
+                <div className='d-xl-none d-xl-block d-md-none box-mobile'>
+                    <img src={bearFaceMob}
+                        srcSet={`${bearFace2Mob} 2x, ${bearFace3Mob} 3x`}
+                        className='bearFace-mobile' />
+                    <button className='btn-login-mobile' onClick={login}><span className='letMeIn'>Let me in</span></button>
+                </div>
             </div>
-            <div className='d-xl-none d-xl-block d-md-none box-mobile'>
-                <img src={bearFaceMob}
-                    srcSet={`${bearFace2Mob} 2x, ${bearFace3Mob} 3x`}
-                    className='bearFace-mobile' />
-                <button className='btn-login-mobile'><span className='letMeIn'>Let me in</span></button>
-            </div>
-        </div>
+            <NotificationModal
+                open={showModal}
+            />
+        </>
     )
 }
