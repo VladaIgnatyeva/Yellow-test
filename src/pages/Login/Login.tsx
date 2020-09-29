@@ -12,7 +12,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import './Login.css';
 
 interface LoginProps extends RouteComponentProps<any> {
-    
+
 }
 
 export const Login = ({ history }: LoginProps) => {
@@ -35,7 +35,7 @@ export const Login = ({ history }: LoginProps) => {
     return (
         <>
             <div className='login-container'>
-                <div className='d-none d-md-block d-xl-none '>
+                <div className='d-none d-md-block d-xl-none d-xl-block'>
                     <div className='box '>
                         <img src={bearFace}
                             srcSet={`${bearFace2} 2x, ${bearFace3} 3x`}
@@ -44,11 +44,14 @@ export const Login = ({ history }: LoginProps) => {
                     </div>
 
                 </div>
-                <div className='d-xl-none d-xl-block d-md-none box-mobile'>
-                    <img src={bearFaceMob}
-                        srcSet={`${bearFace2Mob} 2x, ${bearFace3Mob} 3x`}
-                        className='bearFace-mobile' />
-                    <button className='btn-login-mobile' onClick={login}><span className='letMeIn'>Let me in</span></button>
+                <div className='d-block d-sm-none d-none d-sm-block d-md-none '>
+                    <div className='box-mobile'>
+                        <img src={bearFaceMob}
+                            srcSet={`${bearFace2Mob} 2x, ${bearFace3Mob} 3x`}
+                            className='bearFace-mobile' />
+                        <button className='btn-login-mobile' onClick={login}><span className='letMeIn'>Let me in</span></button>
+
+                    </div>
                 </div>
             </div>
         </>
