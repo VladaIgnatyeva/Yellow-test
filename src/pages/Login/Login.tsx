@@ -7,13 +7,15 @@ import bearFaceMob from '../../assets/bearFace.png';
 import bearFace2Mob from '../../assets/bearFace@2x.png';
 import bearFace3Mob from '../../assets/bearFace@3x.png';
 import HTTPWrapper from '../../utils/HTTPWrapper';
-import { NotificationModal } from '../../components/NotificationModal/NotificationModal';
+import { RouteComponentProps } from 'react-router-dom';
 
 import './Login.css';
 
-export const Login = () => {
+interface LoginProps extends RouteComponentProps<any> {
+    
+}
 
-    const [showModal, setShowModal] = useState(false);
+export const Login = ({ history }: LoginProps) => {
 
     const login = () => {
         const http = new HTTPWrapper();
@@ -22,7 +24,8 @@ export const Login = () => {
         }
         http.post(`auth/uuidLogin`, data)
             .then(res => {
-                localStorage.setItem('token', `${res.data.response.token_type} ${res.data.response.access_token}`)
+                localStorage.setItem('token', `${res.data.response.token_type} ${res.data.response.access_token}`);
+                history.push(`/`)
             })
             .catch(err => {
                 console.log(err);
@@ -48,9 +51,6 @@ export const Login = () => {
                     <button className='btn-login-mobile' onClick={login}><span className='letMeIn'>Let me in</span></button>
                 </div>
             </div>
-            <NotificationModal
-                open={showModal}
-            />
         </>
     )
 }
