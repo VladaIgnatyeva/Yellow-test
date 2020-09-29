@@ -25,7 +25,7 @@ export const Login = ({ history }: LoginProps) => {
         http.post(`auth/uuidLogin`, data)
             .then(res => {
                 localStorage.setItem('token', `${res.data.response.token_type} ${res.data.response.access_token}`);
-                history.push(`/`)
+                history.push(`/jogs`)
             })
             .catch(err => {
                 console.log(err);

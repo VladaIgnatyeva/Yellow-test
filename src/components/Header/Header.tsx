@@ -46,10 +46,14 @@ export const Header = () => {
                 </Link>
                 <nav className="site-header__nav">
                     <div className="navigation">
+
                         <label>
-                            <input type="radio" name="nav" />
-                            <h3 className="navigation-item">JOGS</h3>
+                            <Link to="/jogs">
+                                <input type="radio" name="nav" />
+                                <h3 className="navigation-item">JOGS</h3>
+                            </Link>
                         </label>
+
                         <label>
                             <Link to="/info">
                                 <input type="radio" name="nav" />
@@ -68,8 +72,10 @@ export const Header = () => {
             </div>
             <nav className="navigation__mobile">
                 <label>
-                    <input type="radio" name="nav-mob" />
-                    <h3 className="navigation-item">JOGS</h3>
+                    <Link to="/jogs">
+                        <input type="radio" name="nav-mob" />
+                        <h3 className="navigation-item">JOGS</h3>
+                    </Link>
                 </label>
                 <label>
                     <NavLink to="/info">
