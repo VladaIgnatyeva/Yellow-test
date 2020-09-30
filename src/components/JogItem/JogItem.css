@@ -1,0 +1,29 @@
+.jogIcon{
+    width: 87px;
+}
+
+.jog-container{
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    justify-content: space-evenly;
+    width: 400px;
+    align-items: center;
+}
+
+.jog-container .box{
+    display: flex;
+    flex-direction: column;
+    font-family: SFUIText-Regular;
+    font-size: 14px;
+    color: #b0b0b0;
+    line-height: 1.8;
+}
+
+.black{
+    color: black;
+}
+
+.bold{
+    font-weight: 800;
+}
