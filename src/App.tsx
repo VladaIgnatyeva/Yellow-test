@@ -52,13 +52,13 @@ const App = () => {
           setActiveFilter={setActiveFilter}
         />
         <Route
-          component={(props: any) => <Login {...props} setAuth={setAuth} />}
+          component={(props: any) => {
+            return <div>
+              <Header  {...props} setFilter={setFilter} filter={filter} isAuth={isAuth} isActiveFilter={isActiveFilter} setActiveFilter={setActiveFilter} />
+              <Login {...props} setAuth={setAuth} />
+            </div>
+          }}
           path='/login'
-          setFilter={setFilter}
-          filter={filter}
-          isAuth={isAuth}
-          isActiveFilter={isActiveFilter}
-          setActiveFilter={setActiveFilter}
         />
       </Router>
     </>

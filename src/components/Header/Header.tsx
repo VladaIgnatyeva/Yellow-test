@@ -53,7 +53,7 @@ export const Header = ({ filter, setFilter, isAuth, history, location, setActive
 
 
     return (
-        <div className='header'>
+       
             <div className='site-header-wrp'>
                 <div className='site-header'>
                     <div className="site-header__content">
@@ -124,6 +124,6 @@ export const Header = ({ filter, setFilter, isAuth, history, location, setActive
                     isActiveFilter ? <Filter setFilter={setFilter} filter={filter} /> : null
                 }
             </div>
-        </div>
+       
     )
 }
