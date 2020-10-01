@@ -11,20 +11,22 @@ interface HeaderProps {
     filter: IFilter,
     setFilter: Function,
     isAuth: boolean,
-    history: any,
-    location: any
+    history?: any,
+    location?: any,
+    setActiveFilter: Function,
+    isActiveFilter: boolean
 }
 
-export const Header = ({ filter, setFilter, isAuth, history, location }: HeaderProps) => {
-    const [isActiveFilter, setActiveFilter] = useState(false);
+export const Header = ({ filter, setFilter, isAuth, history, location, setActiveFilter, isActiveFilter }: HeaderProps) => {
 
     const handleActiveFilter = () => {
         setActiveFilter(!isActiveFilter)
     }
 
-    const url = location.pathname;
+   const url = location.pathname;
 
     useEffect(() => {
+
         const menuButton = document.getElementById('menu-btn');
         const header = document.querySelector('.site-header');
         const logo = document.querySelector('.site-logo');

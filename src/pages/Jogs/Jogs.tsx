@@ -26,11 +26,11 @@ export const Jogs = ({ filter }: IJogs) => {
                 console.log(err);
             })
 
-    }, [isUpdate, filter]);
+    }, [filter, isUpdate, ]);
 
     useEffect(() => {
         filterJogs();
-    }, [allJogs])
+    }, [allJogs]);
 
     const filterJogs = () => {
         

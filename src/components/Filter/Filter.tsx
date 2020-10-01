@@ -28,7 +28,7 @@ export const Filter = ({ filter, setFilter }: FilterProps) => {
                             className='filter-input'
                             value={filter.from}
                             onChange={handleFilter}
-                            id={'from'} />
+                            id='from' />
                     </div>
                     <div className='box2'>
                         <span>Date to</span>

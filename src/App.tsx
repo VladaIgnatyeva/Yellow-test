@@ -10,6 +10,7 @@ import { IFilter } from './utils/types'
 
 const App = () => {
 
+  const [isActiveFilter, setActiveFilter] = useState(false);
   const [filter, setFilter] = useState({
     from: '',
     to: ''
@@ -20,28 +21,44 @@ const App = () => {
   return (
     <>
       <Router >
-        <Route
-          component={(props: any) => <Header  {...props} setFilter={setFilter} filter={filter} isAuth={isAuth} />}
-          path='/'
-        />
-
         <PrivateRoute
           exact
           path="/"
           component={Jogs}
+          setFilter={setFilter}
+          filter={filter}
+          isAuth={isAuth}
+          isActiveFilter={isActiveFilter}
+          setActiveFilter={setActiveFilter}
         />
         <PrivateRoute
           exact
           path="/info"
           component={Info}
+          setFilter={setFilter}
+          filter={filter}
+          isAuth={isAuth}
+          isActiveFilter={isActiveFilter}
+          setActiveFilter={setActiveFilter}
         />
         <PrivateRoute
+          exact
           component={(props: any) => <Jogs {...props} filter={filter} />}
           path='/jogs'
+          setFilter={setFilter}
+          filter={filter}
+          isAuth={isAuth}
+          isActiveFilter={isActiveFilter}
+          setActiveFilter={setActiveFilter}
         />
         <Route
           component={(props: any) => <Login {...props} setAuth={setAuth} />}
           path='/login'
+          setFilter={setFilter}
+          filter={filter}
+          isAuth={isAuth}
+          isActiveFilter={isActiveFilter}
+          setActiveFilter={setActiveFilter}
         />
       </Router>
     </>
