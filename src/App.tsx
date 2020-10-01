@@ -51,6 +51,16 @@ const App = () => {
           isActiveFilter={isActiveFilter}
           setActiveFilter={setActiveFilter}
         />
+        <PrivateRoute
+          exact
+          component={(props: any) => null}
+          path='/contacts'
+          setFilter={setFilter}
+          filter={filter}
+          isAuth={isAuth}
+          isActiveFilter={isActiveFilter}
+          setActiveFilter={setActiveFilter}
+        />
         <Route
           component={(props: any) => {
             return <div>
