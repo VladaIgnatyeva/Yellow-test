@@ -14,9 +14,24 @@ interface IJogsList {
 export const JogsList = ({ jogs, setUpdate }: IJogsList) => {
 
     const [showModal, setShowModal] = useState(false);
+    const [selectedJog, setSelectedJog] = useState({
+        date: 0,
+        distance: 0,
+        time: 0,
+        id: 0,
+        user_id: ''
+    } as IJog);
+
+    const [isEdit, setEdit] = useState(false);
 
     const handleClose = () => { setUpdate(new Date().getMilliseconds()); setShowModal(false); }
     const handleShow = () => setShowModal(true);
+
+    const editJog = (jog: IJog) => {
+        setEdit(true);
+        setSelectedJog(jog);
+        handleShow();
+    }
 
     return (
         <div className='jogsList-container'>
@@ -24,9 +39,8 @@ export const JogsList = ({ jogs, setUpdate }: IJogsList) => {
                 jogs.map((jog: IJog) => {
                     return <JogItem
                         key={getRandomInt(5364)}
-                        date={jog.date}
-                        distance={jog.distance}
-                        time={jog.time}
+                        jog={jog}
+                        editJog={editJog}
                     />
                 })
             }
@@ -35,10 +49,20 @@ export const JogsList = ({ jogs, setUpdate }: IJogsList) => {
                 <img src={AddIcon} onClick={handleShow} />
             </div>
 
-            <AddJogModal
-                show={showModal}
-                handleClose={handleClose}
-            />
+            {
+                isEdit ?
+                    <AddJogModal
+                        show={showModal}
+                        handleClose={handleClose}
+                        jog={selectedJog}
+                    />
+                    : <AddJogModal
+                        show={showModal}
+                        handleClose={handleClose}
+
+                    />
+            }
+
         </div>
     )
 }
