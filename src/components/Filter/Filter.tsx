@@ -3,17 +3,17 @@ import './Filter.css';
 import { IFilter } from '../../utils/types';
 
 interface FilterProps {
-    // filter: IFilter,
-    // setFilter: Function
+    filter: IFilter,
+    setFilter: Function
 }
 
-export const Filter = ({ }: FilterProps) => {
+export const Filter = ({ filter, setFilter }: FilterProps) => {
 
     const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        /*setFilter({
+        setFilter({
             ...filter,
             [e.target.id]: e.target.value
-        });*/
+        });
     }
 
     return (
@@ -26,13 +26,18 @@ export const Filter = ({ }: FilterProps) => {
                             type="date"
                             placeholder=' '
                             className='filter-input'
-                            // value={'filter.from'} 
+                            value={filter.from}
                             onChange={handleFilter}
                             id={'from'} />
                     </div>
                     <div className='box2'>
                         <span>Date to</span>
-                        <input type="date" className='filter-input' value={'filter.to'} id='to' onChange={handleFilter} />
+                        <input
+                            type="date"
+                            className='filter-input'
+                            value={filter.to}
+                            id='to'
+                            onChange={handleFilter} />
                     </div>
                 </div>
             </div>

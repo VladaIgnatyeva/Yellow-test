@@ -6,14 +6,19 @@ import { Login } from './pages/Login/Login';
 import { Info } from './pages/Info/Info';
 import PrivateRoute from './utils/PrivateRoute';
 import { Jogs } from './pages/Jogs/Jogs';
-
+import { IFilter } from './utils/types'
 
 const App = () => {
+
+  const [filter, setFilter] = useState({
+    from: '',
+    to: ''
+  } as IFilter);
 
   return (
     <>
       <Router >
-        <Header />
+        <Header setFilter={setFilter} filter={filter} />
         <PrivateRoute
           exact
           path="/"
@@ -25,10 +30,9 @@ const App = () => {
           component={Info}
         />
         <PrivateRoute
-          component={(props: any) => <Jogs {...props} />}
+          component={(props: any) => <Jogs {...props} filter={filter} />}
           path='/jogs'
         />
-
         <Route path='/login' component={Login} />
       </Router>
     </>

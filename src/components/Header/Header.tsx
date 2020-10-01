@@ -8,11 +8,11 @@ import { IFilter } from '../../utils/types';
 import './Header.css';
 
 interface HeaderProps {
-    //filter: IFilter,
-    //setFilter: Function
+    filter: IFilter,
+    setFilter: Function
 }
 
-export const Header = ({ }: HeaderProps) => {
+export const Header = ({ filter, setFilter }: HeaderProps) => {
     const [isActiveFilter, setActiveFilter] = useState(false);
 
     const isAuth = localStorage.getItem('token') ? true : false;
@@ -122,7 +122,7 @@ export const Header = ({ }: HeaderProps) => {
 
                 </div>
                 {
-                    isActiveFilter ? <Filter /> : null
+                    isActiveFilter ? <Filter setFilter={setFilter} filter={filter} /> : null
                 }
             </div>
         </>
