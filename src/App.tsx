@@ -15,10 +15,12 @@ const App = () => {
     to: ''
   } as IFilter);
 
+  const [isAuth, setAuth] = useState(localStorage.getItem('token') ? true : false);
+
   return (
     <>
       <Router >
-        <Header setFilter={setFilter} filter={filter} />
+        <Header setFilter={setFilter} filter={filter} isAuth={isAuth} />
         <PrivateRoute
           exact
           path="/"
@@ -33,7 +35,10 @@ const App = () => {
           component={(props: any) => <Jogs {...props} filter={filter} />}
           path='/jogs'
         />
-        <Route path='/login' component={Login} />
+        <Route
+          component={(props: any) => <Login {...props} setAuth={setAuth} />}
+          path='/login'
+        />
       </Router>
     </>
   );

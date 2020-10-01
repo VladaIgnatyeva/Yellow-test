@@ -12,10 +12,10 @@ import { RouteComponentProps } from 'react-router-dom';
 import './Login.css';
 
 interface LoginProps extends RouteComponentProps<any> {
-
+    setAuth: Function
 }
 
-export const Login = ({ history }: LoginProps) => {
+export const Login = ({ history, setAuth }: LoginProps) => {
 
     const login = () => {
         const http = new HTTPWrapper();
@@ -25,6 +25,7 @@ export const Login = ({ history }: LoginProps) => {
         http.post(`auth/uuidLogin`, data)
             .then(res => {
                 localStorage.setItem('token', `${res.data.response.token_type} ${res.data.response.access_token}`);
+                setAuth(true);
                 history.push(`/jogs`)
             })
             .catch(err => {

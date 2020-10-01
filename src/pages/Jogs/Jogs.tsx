@@ -33,8 +33,9 @@ export const Jogs = ({ filter }: IJogs) => {
     }, [allJogs])
 
     const filterJogs = () => {
-        const from = (new Date(filter.from).getTime() / 1000);
-        const to = new Date(filter.to).getTime() / 1000;
+        
+        const from = filter ? (new Date(filter.from).getTime() / 1000) : null;
+        const to = filter ? new Date(filter.to).getTime() / 1000 : null;
         let result = null;
 
         if (from && to) {

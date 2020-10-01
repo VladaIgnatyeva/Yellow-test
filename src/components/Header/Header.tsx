@@ -9,14 +9,13 @@ import './Header.css';
 
 interface HeaderProps {
     filter: IFilter,
-    setFilter: Function
+    setFilter: Function,
+    isAuth: boolean
 }
 
-export const Header = ({ filter, setFilter }: HeaderProps) => {
+export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
     const [isActiveFilter, setActiveFilter] = useState(false);
-
-    const isAuth = localStorage.getItem('token') ? true : false;
-
+    
     const handleActiveFilter = () => {
         setActiveFilter(!isActiveFilter)
     }
