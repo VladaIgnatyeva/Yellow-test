@@ -5,3 +5,8 @@ export interface IJog {
     time: number,
     user_id?: string
 }
+
+export interface IFilter {
+    from: string,
+    to: string
+}

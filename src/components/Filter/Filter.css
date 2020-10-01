@@ -1,0 +1,42 @@
+.filter-container{
+    width: 100%;
+    height: 60px;
+    background: #eaeaea;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-container .box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.filter-container .box span{
+    margin-right: 20px;
+    color: #464347;
+    font-family: SFUIText-Regular;
+}
+
+.filter-container .box2:last-child{
+    margin-left: 40px;
+}
+
+.filter-input{
+    height: 31px;
+    width: 100px;
+    border-radius: 11px;
+    border: solid 1px #979797;
+    background: white;
+}
+
+@media (max-width: 600px) {
+    .filter-input{
+        width: 70px;
+    }
+}
