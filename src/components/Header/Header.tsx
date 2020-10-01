@@ -11,18 +11,17 @@ interface HeaderProps {
     filter: IFilter,
     setFilter: Function,
     isAuth: boolean,
-    history: any,
-    location: any
+    
 }
 
-export const Header = ({ filter, setFilter, isAuth, history, location }: HeaderProps) => {
+export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
     const [isActiveFilter, setActiveFilter] = useState(false);
 
     const handleActiveFilter = () => {
         setActiveFilter(!isActiveFilter)
     }
 
-    const url = location.pathname;
+    const url = window.location.pathname;
 
     useEffect(() => {
         const menuButton = document.getElementById('menu-btn');
@@ -72,16 +71,22 @@ export const Header = ({ filter, setFilter, isAuth, history, location }: HeaderP
                                         <div className="navigation">
 
                                             <label>
-                                                <input type="radio" name="nav" onChange={() => history.push('/jogs')} />
+                                                <Link to='/jogs'>
+                                                    <input type="radio" name="nav" />
+                                                </Link>
                                                 <h3 className="navigation-item">JOGS</h3>
                                             </label>
 
                                             <label>
-                                                <input type="radio" name="nav" onChange={() => history.push('/info')} />
+                                                <Link to='/info'>
+                                                    <input type="radio" name="nav" />
+                                                </Link>
                                                 <h3 className="navigation-item">INFO</h3>
                                             </label>
                                             <label>
-                                                <input type="radio" name="nav" onChange={() => history.push('/contacts')} />
+                                                <Link to='/contacts'>
+                                                    <input type="radio" name="nav" />
+                                                </Link>
                                                 <h3 className="navigation-item navigation-item__last">CONTACT US</h3>
                                             </label>
                                         </div>
@@ -104,15 +109,21 @@ export const Header = ({ filter, setFilter, isAuth, history, location }: HeaderP
                     </div>
                     <nav className="navigation__mobile">
                         <label>
-                            <input type="radio" name="nav-mob" onChange={() => history.push('/jogs')} />
+                            <Link to='/jogs'>
+                                <input type="radio" name="nav-mob" />
+                            </Link>
                             <h3 className="navigation-item">JOGS</h3>
                         </label>
                         <label>
-                            <input type="radio" name="nav-mob" onChange={() => history.push('/info')} />
+                            <Link to='/info'>
+                                <input type="radio" name="nav-mob" />
+                            </Link>
                             <h3 className="navigation-item">INFO</h3>
                         </label>
                         <label>
-                            <input type="radio" name="nav-mob" onChange={() => history.push('/contacts')} />
+                            <Link to='/contacts'>
+                                <input type="radio" name="nav-mob" />
+                            </Link>
                             <h3 className="navigation-item navigation-item__last">CONTACT US</h3>
                         </label>
                     </nav>
