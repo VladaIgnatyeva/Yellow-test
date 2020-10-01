@@ -26,7 +26,7 @@ export const Jogs = ({ filter }: IJogs) => {
                 console.log(err);
             })
 
-    }, [filter, isUpdate, ]);
+    }, [isUpdate, filter]);
 
     useEffect(() => {
         filterJogs();

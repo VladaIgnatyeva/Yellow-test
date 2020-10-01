@@ -24,7 +24,7 @@ const App = () => {
         <PrivateRoute
           exact
           path="/"
-          component={Jogs}
+          component={(props: any) => <Jogs {...props} filter={filter} />}
           setFilter={setFilter}
           filter={filter}
           isAuth={isAuth}
