@@ -2,7 +2,7 @@ import React from 'react';
 import './JogItem.css';
 import icon from '../../assets/icon.png';
 import { IJog } from '../../utils/types';
-import { dateFormat, distanceFormat, speedFormat, timeFormat } from '../../utils/dataFormatting'
+import { dateFormat } from '../../utils/dateFormat'
 
 
 export const JogItem = ({ date, distance, time }: IJog) => {
@@ -15,9 +15,9 @@ export const JogItem = ({ date, distance, time }: IJog) => {
                 />
                 <div className='box'>
                     <span>{dateFormat(date)}</span>
-                    <span><span className='black bold'>Speed: </span>{speedFormat(distance, time)}</span>
-                    <span><span className='black bold'>Distance: </span>{distanceFormat(distance)} km.</span>
-                    <span><span className='black bold'>Time: </span>{timeFormat(time)} min</span>
+                    <span><span className='black bold'>Speed: </span>{(distance / time * 60).toFixed(0)}</span>
+                    <span><span className='black bold'>Distance: </span>{distance} km.</span>
+                    <span><span className='black bold'>Time: </span>{time} min</span>
                 </div>
             </div>
         </>
