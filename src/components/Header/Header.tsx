@@ -10,15 +10,19 @@ import './Header.css';
 interface HeaderProps {
     filter: IFilter,
     setFilter: Function,
-    isAuth: boolean
+    isAuth: boolean,
+    history: any,
+    location: any
 }
 
-export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
+export const Header = ({ filter, setFilter, isAuth, history, location }: HeaderProps) => {
     const [isActiveFilter, setActiveFilter] = useState(false);
-    
+
     const handleActiveFilter = () => {
         setActiveFilter(!isActiveFilter)
     }
+
+    const url = location.pathname;
 
     useEffect(() => {
         const menuButton = document.getElementById('menu-btn');
@@ -47,7 +51,7 @@ export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
 
 
     return (
-        <>
+        <div className='header'>
             <div className='site-header-wrp'>
                 <div className='site-header'>
                     <div className="site-header__content">
@@ -68,20 +72,16 @@ export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
                                         <div className="navigation">
 
                                             <label>
-                                                <Link to="/jogs">
-                                                    <input type="radio" name="nav" />
-                                                    <h3 className="navigation-item">JOGS</h3>
-                                                </Link>
+                                                <input type="radio" name="nav" onChange={() => history.push('/jogs')} />
+                                                <h3 className="navigation-item">JOGS</h3>
                                             </label>
 
                                             <label>
-                                                <Link to="/info">
-                                                    <input type="radio" name="nav" />
-                                                    <h3 className="navigation-item">INFO</h3>
-                                                </Link>
+                                                <input type="radio" name="nav" onChange={() => history.push('/info')} />
+                                                <h3 className="navigation-item">INFO</h3>
                                             </label>
                                             <label>
-                                                <input type="radio" name="nav" />
+                                                <input type="radio" name="nav" onChange={() => history.push('/contacts')} />
                                                 <h3 className="navigation-item navigation-item__last">CONTACT US</h3>
                                             </label>
                                         </div>
@@ -91,9 +91,11 @@ export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
                                     </nav>
 
                                     {
-                                        isActiveFilter ?
-                                            <div onClick={handleActiveFilter} className='filterActiveIcon-wrp'><img src={filterActiveIcon} /></div>
-                                            : <div onClick={handleActiveFilter} className='filterIcon-wrp'><img src={filterIcon} /></div>
+                                        (url === '/jogs' || url === '/') ?
+                                            isActiveFilter ?
+                                                <div onClick={handleActiveFilter} className='filterActiveIcon-wrp'><img src={filterActiveIcon} /></div>
+                                                : <div onClick={handleActiveFilter} className='filterIcon-wrp'><img src={filterIcon} /></div>
+                                            : null
                                     }
                                 </div>
                                 : null
@@ -102,19 +104,15 @@ export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
                     </div>
                     <nav className="navigation__mobile">
                         <label>
-                            <Link to="/jogs">
-                                <input type="radio" name="nav-mob" />
-                                <h3 className="navigation-item">JOGS</h3>
-                            </Link>
+                            <input type="radio" name="nav-mob" onChange={() => history.push('/jogs')} />
+                            <h3 className="navigation-item">JOGS</h3>
                         </label>
                         <label>
-                            <NavLink to="/info">
-                                <input type="radio" name="nav-mob" />
-                                <h3 className="navigation-item">INFO</h3>
-                            </NavLink>
+                            <input type="radio" name="nav-mob" onChange={() => history.push('/info')} />
+                            <h3 className="navigation-item">INFO</h3>
                         </label>
                         <label>
-                            <input type="radio" name="nav-mob" />
+                            <input type="radio" name="nav-mob" onChange={() => history.push('/contacts')} />
                             <h3 className="navigation-item navigation-item__last">CONTACT US</h3>
                         </label>
                     </nav>
@@ -124,6 +122,6 @@ export const Header = ({ filter, setFilter, isAuth }: HeaderProps) => {
                     isActiveFilter ? <Filter setFilter={setFilter} filter={filter} /> : null
                 }
             </div>
-        </>
+        </div>
     )
 }

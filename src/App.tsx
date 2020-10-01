@@ -20,7 +20,11 @@ const App = () => {
   return (
     <>
       <Router >
-        <Header setFilter={setFilter} filter={filter} isAuth={isAuth} />
+        <Route
+          component={(props: any) => <Header  {...props} setFilter={setFilter} filter={filter} isAuth={isAuth} />}
+          path='/'
+        />
+
         <PrivateRoute
           exact
           path="/"
