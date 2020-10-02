@@ -130,10 +130,12 @@ header{
     display: none;
 }
   
-.navigation__mobile input[name="nav-mob"]:checked + .navigation-item {
-    color: #7ed321;
+
+.navigation__mobile input[name="nav-mob"]:checked > label:nth-child(1) > a {
+    color: #7ed321!important;
+    border: none;
 }
-  
+
 .navigation__mobile .navigation-item {
     display: block;
     font-family: SFUIText;

@@ -10,64 +10,40 @@ import { IFilter } from './utils/types'
 
 const App = () => {
 
-  const [isActiveFilter, setActiveFilter] = useState(false);
   const [filter, setFilter] = useState({
     from: '',
     to: ''
   } as IFilter);
 
   const [isAuth, setAuth] = useState(localStorage.getItem('token') ? true : false);
-
+  
   return (
     <>
       <Router >
+        <Header setFilter={setFilter} filter={filter} isAuth={isAuth} />
+
         <PrivateRoute
           exact
           path="/"
           component={(props: any) => <Jogs {...props} filter={filter} />}
-          setFilter={setFilter}
-          filter={filter}
-          isAuth={isAuth}
-          isActiveFilter={isActiveFilter}
-          setActiveFilter={setActiveFilter}
         />
         <PrivateRoute
           exact
           path="/info"
           component={Info}
-          setFilter={setFilter}
-          filter={filter}
-          isAuth={isAuth}
-          isActiveFilter={isActiveFilter}
-          setActiveFilter={setActiveFilter}
         />
         <PrivateRoute
           exact
           component={(props: any) => <Jogs {...props} filter={filter} />}
           path='/jogs'
-          setFilter={setFilter}
-          filter={filter}
-          isAuth={isAuth}
-          isActiveFilter={isActiveFilter}
-          setActiveFilter={setActiveFilter}
         />
         <PrivateRoute
           exact
           component={(props: any) => null}
           path='/contacts'
-          setFilter={setFilter}
-          filter={filter}
-          isAuth={isAuth}
-          isActiveFilter={isActiveFilter}
-          setActiveFilter={setActiveFilter}
         />
         <Route
-          component={(props: any) => {
-            return <div>
-              <Header  {...props} setFilter={setFilter} filter={filter} isAuth={isAuth} isActiveFilter={isActiveFilter} setActiveFilter={setActiveFilter} />
-              <Login {...props} setAuth={setAuth} />
-            </div>
-          }}
+          component={(props: any) => <Login {...props} setAuth={setAuth} />}
           path='/login'
         />
       </Router>
