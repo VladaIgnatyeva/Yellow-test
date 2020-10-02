@@ -54,9 +54,7 @@
   "devDependencies": {
     "@types/jest": "^24.9.1",
     "babel-core": "^6.26.3",
-    "babel-jest": "^26.3.0",
     "babel-preset-env": "^1.7.0",
-    "jest": "^26.4.2",
     "jest-puppeteer": "^4.4.0",
     "puppeteer": "^5.3.1"
   }
